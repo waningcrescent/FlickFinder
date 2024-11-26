@@ -1,0 +1,396 @@
+/* General body styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e6f7f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header styling */
+header {
+    width: 100%;
+    background-color: #e6f7f9;
+    color: #00274d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 60px;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 90px;
+    margin-right: 15px;
+}
+
+.auth-links a {
+    color: #00274d;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+/* Filter Bar styling */
+.filter-bar {
+    background-color: #00274d;
+    color: #ffffff;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 15px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-bar form {
+    width: 100%;
+}
+
+.filter-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.filter-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+}
+
+.filter-section label {
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.filter-section input[type="text"],
+.filter-section input[type="number"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+}
+
+.genre-options {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+/* Search Bar Styling */
+.search-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.search-bar input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-bar button:hover {
+    background-color: #555;
+}
+
+/* Movies Section */
+.movies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.movie-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 180px;
+    margin: 15px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.movie-card img {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-details {
+    padding: 10px;
+}
+
+.movie-details h3 {
+    font-size: 1em;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.movie-details p {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.movie-details button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #1a1a5c; /* Match with filter bar color */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.movie-details button:hover {
+    background-color: #333;
+}
+
+
+/* Details Page */
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* Match first page background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header styling */
+.header {
+    width: 100%;
+    background-color: #e6f7f9;
+    color: #00274d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 60px;
+}
+
+.header .logo {
+    width: 50px;
+    height: 50px;
+}
+
+.header h1 {
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.header nav a {
+    color: black;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Details container */
+.details-container {
+    display: flex;
+    background-color: #ffffff; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 800px; /* Smaller container */
+    width: 90%;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+/* Poster section */
+.details-poster img {
+    width: 250px; /* Smaller poster */
+    height: auto;
+    border-radius: 10px 0 0 10px;
+}
+
+/* Content section */
+.details-content {
+    padding: 20px;
+    flex: 1;
+}
+
+.details-content h1 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #333333; /* Dark text */
+}
+
+.details-content p {
+    font-size: 1em; /* Smaller text */
+    margin: 5px 0;
+    color: #555555; /* Lighter text */
+}
+
+.details-content strong {
+    font-weight: bold;
+    color: #000000;
+}
+
+/* Platforms section */
+.platforms img {
+    width: 40px; /* Smaller platform logos */
+    height: 40px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/*results section*/
+/* same as home page*/
+/* General Styling for the Movies Section */
+.movies {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Grid Layout for Movie Cards */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between cards */
+    width: 100%; /* Full width of the container */
+    max-width: 1200px; /* Limit the width for larger screens */
+    margin: 0 auto; /* Center the grid */
+}
+
+/* Styling for Individual Movie Cards */
+.movie-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for card effect */
+    text-align: center;
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.movie-card:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.movie-card img {
+    width: 100%;
+    height: 300px; /* Fixed height for uniformity */
+    object-fit: cover; /* Ensure image fits within the card without distortion */
+}
+
+/* Styling for Movie Details */
+.movie-details {
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.movie-details h3 {
+    font-size: 1.1em;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.movie-details p {
+    font-size: 0.9em;
+    margin: 5px 0;
+    color: #555;
+}
+
+.movie-details button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #1a1a5c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.movie-details button:hover {
+    background-color: #333;
+}
+
+/* Ensure Grid Works Responsively */
+@media (max-width: 600px) {
+    .movie-card img {
+        height: 200px; /* Adjust height for smaller screens */
+    }
+
+    .movie-details h3 {
+        font-size: 1em;
+    }
+
+    .movie-details p {
+        font-size: 0.8em;
+    }
+
+    .movie-details button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+}
+
+/* Genre Section */
+.genre-section {
+    margin: 20px 0;
+}
+
+.genre-section h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #00274d;
+}
+
+.movie-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.movie-card {
+    flex: 0 0 auto;
+    width: 180px;
+}

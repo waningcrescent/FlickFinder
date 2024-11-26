@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Movies by Genre</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .genre-section {
+            margin: 40px 0;
+        }
+
+        .genre-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #00274d; /* Genre title color */
+            text-transform: capitalize;
+        }
+
+        .movie-row {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 10px 0;
+            scrollbar-width: thin;
+        }
+
+        .movie-row::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .movie-row::-webkit-scrollbar-thumb {
+            background-color: #bdc3c7;
+            border-radius: 4px;
+        }
+
+        .movie-card {
+            flex: 0 0 auto;
+            width: 150px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+            padding-bottom: 10px;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .movie-card h3 {
+            font-size: 1rem;
+            margin: 10px;
+            color: #00274d; /* Movie title color */
+        }
+
+        .movie-card p {
+            font-size: 0.85rem;
+            color: #00274d; /* IMDb score text color */
+            margin-bottom: 10px;
+        }
+
+        /* Button Styling */
+        .see-details-btn {
+            background-color: #00274d; /* Blue button */
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .see-details-btn:hover {
+            background-color: #16a085; /* Color on hover */
+        }
+
+        /* Updated Header Styling */
+        .header {
+            background-color: #e6f7f9; /* Updated background color */
+            padding: 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding subtle shadow */
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header img {
+            height: 50px; /* Logo size increased */
+            margin-right: 10px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2rem; /* Increased font size for the header */
+            color: #00274d; /* Updated text color */
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #00274d; /* Updated link color */
+            margin-left: 15px;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #16a085; /* Color on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Updated Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="FlickFinder Logo">
+            <h1>FLICKFINDER</h1>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/chatbot">Chatbot</a>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <div class="container">
+        <h2 style="text-align: center; color: #00274d;">Top Movies by Genre</h2>
+        {% for genre, movies in genre_data.items() %}
+        <div class="genre-section">
+            <h2 class="genre-title">{{ genre }}</h2>
+            <div class="movie-row">
+                {% for movie in movies %}
+                <div class="movie-card">
+                    <img src="{{ movie.poster_url if movie.poster_url else url_for('static', filename='images/default_movie.jpg') }}" alt="{{ movie.title }}">
+                    <h3>{{ movie.title }}</h3>
+                    <p>IMDb Score: {{ movie.imdb_score }}</p>
+                    <a href="{{ url_for('movie_details', movie_id=movie.id) }}" class="see-details-btn">See Details</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

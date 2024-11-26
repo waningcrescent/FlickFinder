@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="FlickFinder Logo" class="logo">
+        <h1>FlickFinder</h1>
+        <nav>
+            <a href="/">Home</a> |
+        </nav>
+    </header>
+
+    <!-- Movie Details Section -->
+    <div class="details-container">
+        <div class="details-poster">
+            <img src="{{ movie.poster_url }}" alt="{{ movie.title }}">
+        </div>
+        <div class="details-content">
+            <h1>{{ movie.title }}</h1>
+            <p><strong>Runtime:</strong> {{ movie.runtime or 'Unknown' }} minutes</p>
+            <p><strong>Year:</strong> {{ movie.release_year or 'Unknown' }}</p>
+            <p><strong>Description:</strong> {{ movie.overview or 'No description available' }}</p>
+            <p><strong>IMDB Score:</strong> {{ movie.imdb_score or 'N/A' }}</p>
+            <p><strong>Genres:</strong> {{ movie.genres or 'Unknown' }}</p>
+            <p><strong>Rating:</strong> {{ movie.rating or 'Unknown' }}</p>
+            <p><strong>Director:</strong> {{ movie.director or 'Unknown' }}</p>
+            <p><strong>Cast:</strong></p>
+            <ul class="cast-list">
+                {% if movie.cast %}
+                    {% for cast_member in movie.cast.split(',') %}
+                    <li>{{ cast_member.strip() }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li>No cast information available.</li>
+                {% endif %}
+            </ul>
+            <p><strong>Watch on:</strong></p>
+            <div class="platforms">
+                {% if movie.platforms.Netflix %}
+                <img src="{{ url_for('static', filename='images/netflixlogo.png') }}" alt="Netflix">
+                {% endif %}
+                {% if movie.platforms.Amazon %}
+                <img src="{{ url_for('static', filename='images/primelogo.png') }}" alt="Prime">
+                {% endif %}
+                {% if movie.platforms.Hotstar %}
+                <img src="{{ url_for('static', filename='images/hotstarlogo.png') }}" alt="Hotstar">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

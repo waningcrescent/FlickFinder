@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlickFinder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo-title">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="FlickFinder Logo" class="logo">
+            <h1>FLICKFINDER</h1>
+        </div>
+        <div class="auth-links">
+            <a href="/genres">Explore</a>
+            <a href="/register">Chatbot</a>
+        </div>
+    </header>
+
+    <!-- Filter Bar Section -->
+    <section class="filter-bar">
+        <form method="get" action="/filter" id="filter-form">
+            <!-- First Row -->
+            <div class="filter-row">
+                <div class="filter-section">
+                    <label for="platform">Select Platforms:</label>
+                    <input type="checkbox" name="platform" value="Netflix" id="netflix"> Netflix
+                    <input type="checkbox" name="platform" value="Hotstar" id="hotstar"> Hotstar
+                    <input type="checkbox" name="platform" value="Prime" id="prime"> Prime
+                </div>
+                <div class="filter-section">
+                    <label for="type">Select Type:</label>
+                    <input type="checkbox" name="type" value="Movie" id="movie"> Movie
+                    <input type="checkbox" name="type" value="TV Show" id="show"> TV Show
+                </div>
+            </div>
+
+            <!-- Second Row -->
+            <div class="filter-row">
+                <div class="filter-section">
+                    <label for="cast_members">Cast Member:</label>
+                    <input type="text" name="cast_members" placeholder="Enter Actor Name" id="cast_members">
+                </div>
+                <div class="filter-section">
+                    <label for="rating_type">Rating Type:</label>
+                    <input type="text" name="rating_type" placeholder="e.g., PG-13" id="rating_type">
+                </div>
+                <div class="filter-section">
+                    <label for="year">Year:</label>
+                    <input type="text" name="year" placeholder="Enter comma separated" id="year">
+                </div>
+            </div>
+
+            <!-- Third Row -->
+            <div class="filter-row">
+                <div class="filter-section">
+                    <label for="min_runtime">Running Time Between:</label>
+                    <input type="number" name="min_runtime" placeholder="min" id="min_runtime">
+                    <input type="number" name="max_runtime" placeholder="max" id="max_runtime">
+                </div>
+                <div class="filter-section">
+                    <label for="min_rating">IMDB Rating Between:</label>
+                    <input type="number" name="min_rating" placeholder="min" min="0" max="10" step="0.1" id="min_rating">
+                    <input type="number" name="max_rating" placeholder="max" min="0" max="10" step="0.1" id="max_rating">
+                </div>
+                <div class="filter-section genre-options">
+                    <label for="genre">Genres:</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" name="genre" value="Action" id="action"> Action
+                        <input type="checkbox" name="genre" value="Romance" id="romance"> Romance
+                        <input type="checkbox" name="genre" value="Comedy" id="comedy"> Comedy
+                        <input type="checkbox" name="genre" value="Drama" id="drama"> Drama
+                        <input type="checkbox" name="genre" value="Adventure" id="adventure"> Adventure
+                        <input type="checkbox" name="genre" value="Animation" id="animation"> Animation
+                        <input type="checkbox" name="genre" value="Documentary" id="documentary"> Documentary
+                        <input type="checkbox" name="genre" value="Fantasy" id="fantasy"> Fantasy
+                        <input type="checkbox" name="genre" value="Horror" id="horror"> Horror
+                        <input type="checkbox" name="genre" value="Mystery" id="mystery"> Mystery
+                        <input type="checkbox" name="genre" value="Science Fiction" id="science_fiction"> Science Fiction
+                        <input type="checkbox" name="genre" value="Thriller" id="thriller"> Thriller
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" name="search" placeholder="Search by Name" id="search">
+                <button type="submit">Search</button>
+                <p id="error-message" style="color: red; display: none;"></p>
+            </div>
+        </form>
+    </section>
+
+    <!-- Movie Cards Section -->
+    <section class="movies">
+        <div class="movie-grid">
+            {% for movie in movies %}
+            <div class="movie-card">
+                <img src="{{ movie.poster_url or url_for('static', filename='images/default.png') }}" alt="{{ movie.title }} Poster">
+                <div class="movie-details">
+                    <p>{{ movie.release_year or 'Unknown' }}</p>
+                    <h3>{{ movie.title or 'Unknown' }}</h3>
+                    <p>Score: {{ movie.imdb_score or 'Unknown' }}</p>
+                    <p>{{ movie.genre or 'Unknown' }}</p>
+                    <button onclick="location.href='/details/{{ movie.id }}'">See Details</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- JavaScript for Validation -->
+    <script>
+        document.getElementById('filter-form').addEventListener('submit', function(event) {
+            // Get all input values
+            const inputs = Array.from(document.querySelectorAll('#filter-form input'));
+            const isAnyInputFilled = inputs.some(input => input.type === 'checkbox' ? input.checked : input.value.trim());
+
+            // Check if all fields are empty
+            if (!isAnyInputFilled) {
+                // Prevent form submission
+                event.preventDefault();
+
+                // Show error message
+                const errorMessage = document.getElementById('error-message');
+                errorMessage.textContent = "Please provide at least one query parameter.";
+                errorMessage.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>

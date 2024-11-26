@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtered Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo-title">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="FlickFinder Logo" class="logo">
+            <h1>FLICKFINDER</h1>
+        </div>
+        <div class="auth-links">
+            <a href="/">Home</a>
+        </div>
+    </header>
+
+    <!-- Filtered Results Section -->
+    <section class="movies">
+        <div class="movie-grid">
+            {% for movie in movies %}
+            <div class="movie-card">
+                <img src="{{ movie.poster_url or url_for('static', filename='images/default.png') }}" alt="{{ movie.title }} Poster">
+                <div class="movie-details">
+                    <h3>{{ movie.title or 'Unknown' }}</h3>
+                    <p><strong>Year:</strong> {{ movie.year or 'Unknown' }}</p>
+                    <p><strong>IMDb Score:</strong> {{ movie.imdb_score or 'N/A' }}</p>
+                    <p><strong>Genres:</strong> {{ movie.genres or 'Unknown' }}</p>
+                    <button onclick="location.href='/details/{{ movie.id }}'">See Details</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>
