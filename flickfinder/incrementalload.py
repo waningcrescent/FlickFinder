@@ -4,9 +4,9 @@ from sqlalchemy import create_engine, text
 import requests
 
 # Database connections
-netflix_engine = create_engine('mysql+pymysql://root:1234@localhost/netflix', pool_recycle=3600)
-amazon_engine = create_engine('mysql+pymysql://root:1234@localhost/amazon', pool_recycle=3600)
-hotstar_engine = create_engine('mysql+pymysql://root:1234@localhost/hotstar', pool_recycle=3600)
+netflix_engine = create_engine('mysql+pymysql://root:1234@localhost/netflix', pool_recycle=3600) #replace with user and db at host 
+amazon_engine = create_engine('mysql+pymysql://root:1234@localhost/amazon', pool_recycle=3600)  #replace with user and db at host 
+hotstar_engine = create_engine('mysql+pymysql://root:1234@localhost/hotstar', pool_recycle=3600)  #replace with user and db at host 
 warehouse_engine = create_engine('mysql+pymysql://root:1234@localhost/iia', pool_recycle=3600)
 
 # TMDB API Configuration
