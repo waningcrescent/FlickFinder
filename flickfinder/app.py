@@ -410,7 +410,7 @@ def filter_movies():
                 matched_ids = [
                     cast_id
                     for cast_id, cast_name in all_cast.items()
-                    if levenshtein_distance(cast_input.lower(), cast_name.lower()) <= 4
+                    if levenshtein_distance(cast_input.lower(), cast_name.lower()) <= 3
                 ]
                 matched_cast_ids.append(set(matched_ids))
 
